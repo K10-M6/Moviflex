@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moviflex - Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="estilos.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Moviflex</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-section="dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-section="usuarios"><i class="bi bi-people"></i> Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-section="vehiculos"><i class="bi bi-car-front"></i> Vehículos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-section="rutas"><i class="bi bi-map"></i> Rutas</a>
+                    </li>
+                </ul>
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle"></i> Admin
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="index.html"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <!-- Dashboard -->
+        <div id="dashboard" class="content-section">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5><i class="bi bi-people fs-1"></i></h5>
+                            <h5><span id="totalUsers">0</span> Usuarios</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5><i class="bi bi-car-front fs-1"></i></h5>
+                            <h5><span id="totalVehicles">0</span> Vehículos</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5><i class="bi bi-exclamation-triangle fs-1"></i></h5>
+                            <h5><span id="pendingApprovals">0</span> Pendientes</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección Usuarios -->
+        <div id="usuarios" class="content-section d-none">
+            <div class="card">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-people"></i> Gestión de Usuarios</span>
+                    <div>
+                        <input type="text" id="userSearch" class="form-control form-control-sm" placeholder="Buscar usuario...">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Rol Actual</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Juan Pérez</td>
+                                    <td>juan@moviflex.com</td>
+                                    <td>
+                                        <span class="badge bg-secondary">Cliente</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" data-action="edit-role" data-user-id="1">
+                                            <i class="bi bi-pencil"></i> Editar
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Más usuarios... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección Vehículos -->
+        <div id="vehiculos" class="content-section d-none">
+            <div class="card">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-car-front"></i> Validación de Vehículos</span>
+                    <div>
+                        <input type="text" id="vehicleSearch" class="form-control form-control-sm" placeholder="Buscar vehículo...">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Placa</th>
+                                    <th>Modelo</th>
+                                    <th>Propietario</th>
+                                    <th>Documentos</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ABC123</td>
+                                    <td>Toyota Corolla</td>
+                                    <td>Juan Pérez</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-info" data-action="view-docs" data-placa="ABC123">
+                                            <i class="bi bi-search"></i> Verificar
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-warning">Pendiente</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success me-1" data-action="approve-vehicle" data-placa="ABC123">
+                                            <i class="bi bi-check-circle"></i> Aprobar
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" data-action="reject-vehicle" data-placa="ABC123">
+                                            <i class="bi bi-x-circle"></i> Rechazar
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Más vehículos... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección Rutas -->
+        <div id="rutas" class="content-section d-none">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <i class="bi bi-map"></i> Mapa de Rutas
+                        </div>
+                        <div class="card-body">
+                            <div id="map" style="height: 400px; background-color: #eee; border-radius: 5px;">
+                                <div class="d-flex justify-content-center align-items-center h-100">
+                                    <div class="text-center">
+                                        <i class="bi bi-map fs-1 text-muted"></i>
+                                        <p class="mt-2">Mapa de rutas activas</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <i class="bi bi-list-check"></i> Gestión de Rutas
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Conductor</label>
+                                <select class="form-select" id="driverSelect">
+                                    <option>Seleccionar conductor...</option>
+                                    <option>Juan Pérez (ABC123)</option>
+                                    <option>María Gómez (XYZ789)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Ruta Actual</label>
+                                <div class="border p-2 mb-2 rounded bg-light" id="currentRoute">
+                                    Ruta principal - 12km (25 min)
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Ruta Alternativa</label>
+                                <select class="form-select" id="alternativeRoute">
+                                    <option>Seleccionar ruta...</option>
+                                    <option>Ruta alterna 1 - 14km (22 min)</option>
+                                    <option>Ruta alterna 2 - 15km (20 min)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Comentarios</label>
+                                <textarea class="form-control" rows="3" id="routeComments" placeholder="Recomendaciones para el conductor..."></textarea>
+                            </div>
+                            <button class="btn btn-primary w-100" id="sendRecommendation">
+                                <i class="bi bi-send"></i> Enviar Recomendación
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para ver documentos -->
+        <div class="modal fade" id="documentsModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Documentación del Vehículo <span id="modalPlaca"></span></h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light">
+                                        SOAT
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <img src="https://via.placeholder.com/300x200?text=SOAT" class="img-fluid mb-2">
+                                        <p class="text-muted">Válido hasta: 15/12/2024</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light">
+                                        Tarjeta de Propiedad
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <img src="https://via.placeholder.com/300x200?text=Tarjeta+Propiedad" class="img-fluid mb-2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light">
+                                        Foto Frontal
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <img src="https://via.placeholder.com/300x200?text=Foto+Frontal" class="img-fluid mb-2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-light">
+                                        Foto Trasera
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <img src="https://via.placeholder.com/300x200?text=Foto+Trasera" class="img-fluid mb-2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Comentarios</label>
+                            <textarea class="form-control" rows="3" id="docComments" placeholder="Agregar comentarios sobre la documentación..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" id="approveDocs">Aprobar Documentos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para editar roles -->
+        <div class="modal fade" id="roleModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Editar Rol de Usuario</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="userName" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Rol Actual</label>
+                            <input type="text" class="form-control" id="currentRole" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nuevo Rol</label>
+                            <select class="form-select" id="newRole">
+                                <option>Seleccionar...</option>
+                                <option>Cliente</option>
+                                <option>Conductor</option>
+                                <option>Administrador</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="saveRole">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

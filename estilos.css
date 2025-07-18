@@ -1,0 +1,197 @@
+/* Estilos base */
+body {
+    background-color: #f8f9fa;
+    padding-top: 0;
+}
+
+/* Navbar personalizado */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+/* Cards mejoradas */
+.card {
+    border: none;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-header {
+    font-weight: 500;
+    padding: 1rem 1.25rem;
+}
+
+/* Inputs y formularios */
+.input-group-text {
+    background-color: #f8f9fa;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(135, 206, 235, 0.25);
+}
+
+/* Lista de conductores */
+.driver-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+    padding: 1.25rem;
+}
+
+.driver-card:hover {
+    background-color: rgba(135, 206, 235, 0.1);
+    border-left-color: #87CEEB;
+}
+
+.driver-card h5 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Sistema de rating */
+.rating {
+    color: #ffc107;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.rating i {
+    transition: all 0.2s;
+}
+
+.rating i:hover {
+    transform: scale(1.2);
+}
+
+/* Toast notifications */
+.toast-container {
+    z-index: 1090;
+}
+
+.toast {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Botones mejorados */
+.btn-primary {
+    background-color: #87CEEB;
+    border-color: #87CEEB;
+}
+
+.btn-primary:hover {
+    background-color: #6cb6d8;
+    border-color: #6cb6d8;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .driver-card {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    
+    .driver-card > div:last-child {
+        margin-top: 1rem;
+        width: 100%;
+        text-align: left !important;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.toast.show {
+    animation: fadeIn 0.3s ease forwards;
+}
+/* Estilos para el mapa */
+#mapContainer {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+#routeMap {
+    height: 100%;
+    width: 100%;
+    min-height: 400px;
+}
+
+.map-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.map-controls .btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Panel de conductores */
+#driversPanel {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.driver-item {
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.driver-item:hover {
+    background-color: #f8f9fa;
+    border-left-color: #87CEEB;
+}
+
+/* Notificaciones */
+.toast {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    margin-bottom: 10px;
+}
+
+/* Ícono en navbar */
+.navbar-brand img {
+    filter: brightness(0) invert(1);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    #driversPanel {
+        width: 100%;
+        max-height: 50vh;
+    }
+}
