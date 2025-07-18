@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moviflex - Registro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="estilos.css" rel="stylesheet">
 </head>
 <body class="bg-light">
@@ -16,35 +17,106 @@
 
     <div class="container my-5">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card shadow">
                     <div class="card-header bg-primary text-white">
                         <h4 class="text-center">Registro</h4>
                     </div>
                     <div class="card-body">
                         <form id="registerForm">
-                            <div class="mb-3">
-                                <label class="form-label">Tipo de usuario</label>
+                            <!-- Sección de tipo de usuario -->
+                            <div class="mb-4 p-3 border-bottom">
+                                <h5 class="mb-3"><i class="bi bi-person-badge me-2"></i>Tipo de usuario</h5>
                                 <select class="form-select" id="userType" required>
                                     <option value="">Seleccionar...</option>
                                     <option value="cliente">Cliente</option>
                                     <option value="conductor">Conductor</option>
                                 </select>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" required>
+
+                            <!-- Sección de información personal -->
+                            <div class="mb-4 p-3 border-bottom">
+                                <h5 class="mb-3"><i class="bi bi-person-lines-fill me-2"></i>Información personal</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Nombres</label>
+                                        <input type="text" class="form-control" id="firstName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Apellidos</label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Cédula de Ciudadanía</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="idDocument" accept=".pdf" required>
+                                        <span class="input-group-text">PDF</span>
+                                    </div>
+                                    <small class="text-muted">Sube tu cédula escaneada en formato PDF (máx. 5MB)</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" minlength="10" required>
-                                <small class="text-muted">Mínimo 10 caracteres, mayúsculas, números y símbolos.</small>
+
+                            <!-- Sección de contraseña -->
+                            <div class="mb-4 p-3 border-bottom">
+                                <h5 class="mb-3"><i class="bi bi-shield-lock me-2"></i>Seguridad</h5>
+                                <div class="mb-3">
+                                    <label class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="password" minlength="10" required>
+                                    <small class="text-muted">Mínimo 10 caracteres, incluyendo mayúsculas, números y símbolos.</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Confirmar contraseña</label>
+                                    <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Confirmar contraseña</label>
-                                <input type="password" class="form-control" required>
+
+                            <!-- Sección de documentos (solo para conductores) -->
+                            <div class="mb-4 p-3 border-bottom" id="driverDocsSection" style="display: none;">
+                                <h5 class="mb-3"><i class="bi bi-files me-2"></i>Documentación para conductores</h5>
+                                <div class="alert alert-info">
+                                    <i class="bi bi-info-circle me-2"></i>Los conductores deben subir los siguientes documentos para verificación.
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Licencia de conducir</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="driverLicense" accept=".pdf,.jpg,.png" required>
+                                        <span class="input-group-text">PDF/JPG/PNG</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">SOAT vigente</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="soatDocument" accept=".pdf,.jpg,.png" required>
+                                        <span class="input-group-text">PDF/JPG/PNG</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Foto del vehículo (frontal)</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="vehiclePhoto" accept=".jpg,.png" required>
+                                        <span class="input-group-text">JPG/PNG</span>
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+
+                            <!-- Términos y condiciones -->
+                            <div class="mb-4 form-check">
+                                <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                                <label class="form-check-label" for="termsCheck">Acepto los <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">términos y condiciones</a></label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 py-2">
+                                <i class="bi bi-person-plus me-2"></i>Registrarse
+                            </button>
                         </form>
                         <div class="mt-3 text-center">
                             <p>¿Ya tienes cuenta? <a href="index.html">Inicia sesión</a></p>
@@ -55,7 +127,88 @@
         </div>
     </div>
 
+    <!-- Modal de términos y condiciones -->
+    <div class="modal fade" id="termsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Términos y Condiciones</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>1. Aceptación de los términos</h6>
+                    <p>Al registrarte en Moviflex, aceptas cumplir con estos términos y condiciones...</p>
+                    
+                    <h6>2. Uso del servicio</h6>
+                    <p>El servicio debe usarse de acuerdo con las leyes locales y regulaciones de transporte...</p>
+                    
+                    <h6>3. Responsabilidades del conductor</h6>
+                    <p>Los conductores deben mantener sus documentos en regla y vehículos en buen estado...</p>
+                    
+                    <h6>4. Privacidad de datos</h6>
+                    <p>Protegemos tus datos personales según nuestra política de privacidad...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
+    <script>
+        // Mostrar/ocultar sección de documentos según tipo de usuario
+        document.getElementById('userType').addEventListener('change', function() {
+            const driverDocsSection = document.getElementById('driverDocsSection');
+            if (this.value === 'conductor') {
+                driverDocsSection.style.display = 'block';
+                // Hacer requeridos los documentos para conductores
+                document.querySelectorAll('#driverDocsSection input[type="file"]').forEach(input => {
+                    input.required = true;
+                });
+            } else {
+                driverDocsSection.style.display = 'none';
+                // Quitar requerido si no es conductor
+                document.querySelectorAll('#driverDocsSection input[type="file"]').forEach(input => {
+                    input.required = false;
+                });
+            }
+        });
+
+        // Validación de contraseña y tamaño de archivos
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            // Validación de contraseña
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Las contraseñas no coinciden');
+                return false;
+            }
+            
+            // Validación de fortaleza de contraseña
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
+            if (!passwordRegex.test(password)) {
+                e.preventDefault();
+                alert('La contraseña debe tener al menos 10 caracteres, incluyendo mayúsculas, números y símbolos');
+                return false;
+            }
+            
+            // Validación de tamaño de archivo para cédula (máx 5MB)
+            const idDocument = document.getElementById('idDocument');
+            if (idDocument.files.length > 0) {
+                const fileSize = idDocument.files[0].size / 1024 / 1024; // in MB
+                if (fileSize > 5) {
+                    e.preventDefault();
+                    alert('El archivo de cédula no debe exceder los 5MB');
+                    return false;
+                }
+            }
+            
+            return true;
+        });
+    </script>
 </body>
 </html>
